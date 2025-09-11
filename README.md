@@ -14,7 +14,7 @@ This Docker image encapsulates a lightweight, VNC-accessible web browsing enviro
 
 - **VNC-Ready**: Ready for use with any VNC client or through a web browser using noVNC, offering a user-friendly interface.
 - **Lightweight**: Built on Alpine Linux and Debian Slim, ensuring minimal resource usage.
-- **Customizable**: Set VNC password, initial website URL, auto-start settings for the browser and xterm via environment variables.
+- **Customizable**: Set VNC password, initial website URL, auto-start settings, etc. via environment variables to build custom environments (e.g. webkiosk)
 - **Accessible**: Access the VNC server directly or through a browser using noVNC.
 
 ## Available images 📦
@@ -54,6 +54,16 @@ You can customize the settings of the Docker container by passing environment va
 - Setting the resolution: `VNC_RESOLUTION="1280x720"`
 - Enabling/disabling auto-start for the browser: `AUTO_START_BROWSER=true` or `AUTO_START_BROWSER=false`
 - Enabling/disabling auto-start for xterm: `AUTO_START_XTERM=true` or `AUTO_START_XTERM=false`
+- Enabling/disabling auto-start for window manager (fluxbox): `AUTO_START_WM=true` or `AUTO_START_WM=false`
+- Enabling/disabling auto-start for x11vnc: `AUTO_START_X11VNC=true` or `AUTO_START_X11VNC=false`
+- Enabling/disabling auto-start for xvfb: `AUTO_START_XVFB=true` or `AUTO_START_XVFB=false`
+- Enabling/disabling auto-start for noVNC (websockify): `AUTO_START_NOVNC=true` or `AUTO_START_NOVNC=false`
+- Adding command options for browser: `BROWSER_OPTIONS="--start-fullscreen --kiosk --incognito --noerrdialogs --no-first-run --disk-cache-dir=/dev/null"`
+- Adding command options for x11vnc: `X11VNC_OPTIONS="-nocursor"`
+- Adding command options for xvfb: `XVFB_OPTIONS="-nocursor"`
+- Adding command options for window manager (fluxbox): `WM_OPTIONS="-rc /app/fluxbox.conf"`
+- Adding command options for noVNC (websockify): `NOVNC_OPTIONS="--heartbeat=10"`
+- Adding command options for xterm: `XTERM_OPTIONS="-leftbar"`
 
 ### Available Variables ⚙️
 - `VNC_SCREEN` (default: `0`): Screen number for VNC.
@@ -68,8 +78,18 @@ You can customize the settings of the Docker container by passing environment va
 - `CUSTOMIZE` (default: `false`): Toggle for running custom scripts.
 - `AUTO_START_BROWSER` (default: `true`): Automatically start the browser.
 - `AUTO_START_XTERM` (default: `true`): Automatically start xterm.
+- `AUTO_START_WM` (default: `true`): Automatically start window manager (fluxbox).
+- `AUTO_START_X11VNC` (default: `true`): Automatically start x11vnc.
+- `AUTO_START_XVFB` (default: `true`): Automatically start xvfb.
+- `AUTO_START_NOVNC` (default: `true`): Automatically start noVNC (websockify).
 - `CUSTOM_ENTRYPOINTS_DIR` (default: `/app/custom_entrypoints_scripts`): Directory for custom entry point scripts.
 - `DEBIAN_FRONTEND` (default: `noninteractive`): Frontend setting for Debian-based installations.
+- `BROWSER_OPTIONS` (default: ``): Additional command options to provide to browser start.
+- `X11VNC_OPTIONS` (default: ``): Additional command options to provide to x11vnc start.
+- `XVFB_OPTIONS` (default: ``): Additional command options to provide to xvfb start.
+- `WM_OPTIONS` (default: ``): Additional command options to provide to windows manager (fluxbox) start.
+- `NOVNC_OPTIONS` (default: ``): Additional command options to provide to noVNC (websockify) start.
+- `XTERM_OPTIONS` (default: ``): Additional command options to provide to xterm start.
 
 - Example:
 ```sh

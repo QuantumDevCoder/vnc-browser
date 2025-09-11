@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-# Store the password
-if [ "$VNC_PASSWORD" ]; then
-    sed -i "s/^\(command.*x11vnc.*\)$/\1 -passwd '$VNC_PASSWORD'/" /app/conf.d/x11vnc.conf
+# Add password to x11vnc options
+if [ -n "${VNC_PASSWORD}" ]; then
+    X11VNC_OPTIONS="${X11VNC_OPTIONS} -passwd '${VNC_PASSWORD}'"
 fi
 
 # Print current VNC info
