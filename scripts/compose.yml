@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   vnc-browser:
     container_name: vnc-browser
