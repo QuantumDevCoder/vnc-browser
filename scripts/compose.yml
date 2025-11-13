@@ -9,12 +9,3 @@ services:
     environment:
       VNC_PASSWORD: "a"
     restart: "no"
-  vnc-browser-2:
-    container_name: vnc-browser-2.0
-    image: mrcolorrain/vnc-browser:alpine
-    ports:
-      - "5900:5900"
-      - "6080:6080"
-    environment:
-      VNC_PASSWORD: "a"
-    restart: "no"
